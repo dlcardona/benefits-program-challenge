@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+<!--
+  ~  checkstyle-8.32.xml
+  ~  1.0
+  ~  11/8/22, 9:17 PM
+  ~  Copyright (c) 2022 Unosquare
+  ~  Any illegal reproduction of this content will result in immediate legal action.
+  -->
+
+<!DOCTYPE module PUBLIC
+          "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+          "https://checkstyle.org/dtds/configuration_1_3.dtd">
+		  
+<!-- Updated 2020/04/29 for checkstyle version 8.31
+
+  Checkstyle configuration that checks the sun coding conventions from:
+
+    - the Java Language Specification at
+      https://docs.oracle.com/javase/specs/jls/se11/html/index.html
+
+    - the Sun Code Conventions at https://www.oracle.com/technetwork/java/codeconvtoc-136057.html
+
+    - the Javadoc guidelines at
+      https://www.oracle.com/technetwork/java/javase/documentation/index-137868.html
+
+    - the JDK Api documentation https://docs.oracle.com/en/java/javase/11/
+
+    - some best practices
+
+  Checkstyle is very configurable. Be sure to read the documentation at
+  https://checkstyle.org (or in your downloaded distribution).
+
+  Most Checks are configurable, be sure to consult the documentation.
+
+  To completely disable a check, just comment it out or delete it from the file.
+
+  Finally, it is worth reading the documentation.
+
+-->
+
+<module name="Checker">
+    <!--
+        If you set the basedir property below, then all reported file
+        names will be relative to the specified directory. See
+        https://checkstyle.org/5.x/config.html#Checker
+
+        <property name="basedir" value="${basedir}"/>
+    -->
+
+	<property name="severity" value="warning"/>
+
+    <!-- Checks that a package.html file exists for each package.   -->
+    <!-- See https://checkstyle.org/config_javadoc.html#PackageHtml -->
+    <module name="JavadocPackage">
+	   <property name="allowLegacy" value="true"/>
+    </module>
+
+    <!-- Checks whether files end with a new line.                      -->
+    <!-- See https://checkstyle.org/config_misc.html#NewlineAtEndOfFile -->
+    <module name="NewlineAtEndOfFile">
+	   <property name="fileExtensions" value="java"/>
+       <!-- ignore (eja) 2015/05/26 (This is not a multi-platform supported check.) -->
+       <property name="severity" value="ignore"/>
+    </module>
+
+    <!-- Checks that property files contain the same keys.       -->
+    <!-- See https://checkstyle.org/config_misc.html#Translation -->
+    <module name="Translation"/>
+
+    <!-- Checks for file size violations.             -->
+    <!-- See https://checkstyle.org/config_sizes.html -->
+    <module name="FileLength"/>
+
+    <!-- Checks for whitespace                             -->
+    <!-- See https://checkstyle.org/config_whitespace.html -->
+    <module name="FileTabCharacter">
+	   <property name="fileExtensions" value="java"/>
+    </module>
+
+    <!-- Miscellaneous other checks.                 -->
+    <!-- See https://checkstyle.org/config_misc.html -->
+    <module name="RegexpSingleline">
+       <property name="format" value="\s+$"/>
+       <property name="minimum" value="0"/>
+       <property name="maximum" value="0"/>
+       <property name="message" value="Line has trailing spaces."/>
+	   <property name="fileExtensions" value="java"/>
+    </module>
+
+    <!-- Checks for line length violations.           -->
+    <!-- See https://checkstyle.org/config_sizes.html -->
+    <module name="LineLength">
+        <!-- Update line length (eja) 2016/06/10 -->
+        <property name="max" value="133"/>
+    </module>
+
+    <module name="TreeWalker">
+
+        <!-- Checks for Javadoc comments.                   -->
+        <!-- See https://checkstyle.org/config_javadoc.html -->
+		
+        <module name="SummaryJavadoc"/>
+        <module name="InvalidJavadocPosition"/>
+        <module name="JavadocMethod">
+            <property name="scope" value="public"/>
+        </module>
+        <module name="JavadocType">
+            <property name="scope" value="public"/>
+        </module>
+        <module name="JavadocVariable"/>
+        <module name="JavadocStyle"/>
+        <module name="MissingJavadocMethod"/>
+        <module name="MissingJavadocType"/>
+
+        <!-- Checks for Naming Conventions.                -->
+        <!-- See https://checkstyle.org/config_naming.html -->
+        <module name="ConstantName"/>
+        <module name="LocalFinalVariableName"/>
+        <module name="LocalVariableName"/>
+        <module name="MemberName"/>
+        <module name="MethodName"/>
+        <module name="PackageName"/>
+        <module name="ParameterName"/>
+        <module name="StaticVariableName"/>
+        <module name="TypeName"/>
+
+        <!-- Checks for imports                            -->
+        <!-- See https://checkstyle.org/config_import.html -->
+        <module name="AvoidStarImport">
+            <!-- ignore (eja) 2015/6/10 -->
+            <property name="severity" value="ignore"/>
+        </module>
+        <module name="IllegalImport"/> <!-- defaults to sun.* packages -->
+        <module name="RedundantImport"/>
+        <module name="UnusedImports">
+		    <!-- ignore (eja) 2016/06/10 -->
+            <property name="severity" value="ignore"/>
+        </module>
+        <module name="FinalLocalVariable">
+            <!-- ignore (eja) 2014/12/10 -->
+            <property name="severity" value="ignore"/>
+        </module>
+
+        <module name="MethodLength"/>
+        <module name="ParameterNumber"/>
+
+
+        <!-- Checks for whitespace                             -->
+        <!-- See https://checkstyle.org/config_whitespace.html -->
+        <module name="EmptyForIteratorPad"/>
+        <module name="GenericWhitespace"/>
+        <module name="MethodParamPad"/>
+        <module name="NoWhitespaceAfter"/>
+        <module name="NoWhitespaceBefore"/>
+        <module name="OperatorWrap"/>
+        <module name="ParenPad"/>
+        <module name="TypecastParenPad"/>
+        <module name="WhitespaceAfter">
+		    <!-- ignore (eja) 2016/06/10 -->
+            <property name="severity" value="ignore"/>
+        </module>
+        <module name="WhitespaceAround">
+		    <!-- ignore (eja) 2016/06/10 -->
+            <property name="severity" value="ignore"/>
+        </module>
+
+        <!-- Modifier Checks                                  -->
+        <!-- See https://checkstyle.org/config_modifiers.html -->
+        <module name="ModifierOrder"/>
+        <module name="RedundantModifier">
+            <!-- ignore (eja) 2014/12/10 (allowing interface public modifier) -->
+            <property name="severity" value="ignore"/>
+        </module>
+
+        <!-- Checks for blocks. You know, those {}'s       -->
+        <!-- See https://checkstyle.org/config_blocks.html -->
+        <module name="AvoidNestedBlocks"/>
+        <module name="EmptyBlock"/>
+        <module name="LeftCurly"/>
+        <module name="NeedBraces"/>
+        <module name="RightCurly"/>
+
+
+        <!-- Checks for common coding problems             -->
+        <!-- See https://checkstyle.org/config_coding.html -->
+        <module name="AvoidInlineConditionals">
+            <!-- ignore (eja) 2014/12/10 -->
+            <property name="severity" value="ignore"/>
+        </module>
+        <module name="EmptyStatement"/>
+        <module name="EqualsHashCode"/>
+        <module name="HiddenField"/>
+        <module name="IllegalInstantiation"/>
+        <module name="InnerAssignment"/>
+        <module name="MagicNumber">
+            <!-- ignore (eja) 2014/12/10 -->
+            <property name="severity" value="ignore"/>
+        </module>
+        <module name="MissingSwitchDefault"/>
+
+        <module name="SimplifyBooleanExpression"/>
+        <module name="SimplifyBooleanReturn"/>
+
+        <!-- Checks for class design                       -->
+        <!-- See https://checkstyle.org/config_design.html -->
+        <module name="DesignForExtension">
+            <!-- ignore (eja) 2014/12/10 -->
+            <property name="severity" value="ignore"/>
+        </module>
+        <module name="FinalClass">
+            <!-- ignore (eja) 2014/12/10 -->
+            <property name="severity" value="ignore"/>
+        </module>
+        <module name="HideUtilityClassConstructor"/>
+        <module name="InterfaceIsType"/>
+        <module name="VisibilityModifier"/>
+
+
+        <!-- Miscellaneous other checks.                 -->
+        <!-- See https://checkstyle.org/config_misc.html -->
+        <module name="ArrayTypeStyle"/>
+        <module name="FinalParameters">
+            <!-- ignore (eja) 2014/12/10 -->
+            <property name="severity" value="ignore"/>
+        </module>
+        <module name="TodoComment">
+            <!-- ignore (eja) 2014/12/10 -->
+            <property name="severity" value="ignore"/>
+        </module>
+        <module name="UpperEll"/>
+    </module>
+
+    <module name="RegexpSingleline">
+        <!-- Requires a copyright notice in each file.
+          Code intended to be open-sourced may have a multi-line copyright
+          notice, so that this required text appears on the second line:
+          <pre>
+            /*
+             * Copyright (c) 2000-2020 MotionPoint Corporation. All Rights Reserved.
+             *
+             * (details of license...)
+          </pre>
+        -->
+        <property name="format"
+            value="^.*[cC]opyright.*$" />
+        <property name="minimum" value="1" />
+        <property name="maximum" value="10" />
+        <property name="message" value="Copyright is missing or malformed." />
+        <property name="severity" value="warning" />
+        <property name="fileExtensions" value="java"/>
+    </module>
+
+</module>
